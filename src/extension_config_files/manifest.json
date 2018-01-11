@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "background": {
+      "persistent": true,
+      "scripts": ["bgp.js", "main.bundle.js", "inline.bundle.js"]
+   },
+  "name": "Adi help tool",
+  "description": "This extension allows the user to work with development environment",
+  "version": "1.0",
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google.com; object-src 'self'",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+	"default_title": "Click here!"
+  },
+  "permissions": [ "http://*/*", "https://*/*", "storage", "unlimitedStorage", "contextMenus", "cookies", "tabs", "notifications", "webRequest", "webRequestBlocking", "activeTab", "\u003Call_urls>" ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "governance-service",
+    "develop": "develop.atp-governance-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-governance-service.staging.he.k8s.emea.adsint.biz",
+    "reindex": [
+      "governance/sport-category/reindex",
+      "governance/sport-activity/reindex"
+    ]
+  },
+  {
+    "name": "tester-service",
+    "develop": "develop.atp-tester-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-tester-service.staging.he.k8s.emea.adsint.biz",
+    "reindex": [
+      "governance/sport-category/reindex",
+      "governance/sport-activity/reindex"
+    ]
+  }
+]

@@ -1,0 +1,61 @@
+table {
+  font-family: arial, sans-serif;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 2px;
+  /*width: 250px;*/
+  /*height: 35px;*/
+}
+
+th {
+  font-size: 80%;
+}
+
+
+input {
+  padding: 5px;
+}
+
+.requestHeader {
+  width: 250px;
+  height: 35px;
+}
+
+.urlValueProducer {
+  width: 250px;
+  height: 35px;
+}
+
+.urlPattern {
+  width: 250px;
+  height: 35px;
+}
+
+.repentance {
+  width: 250px;
+  height: 35px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.green-text {
+  color: green;
+}
+
+.disabled-text {
+  color: #dddddd;
+}
+
+table {
+  margin-left: 6%;
+}

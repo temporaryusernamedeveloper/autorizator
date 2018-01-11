@@ -1,0 +1,66 @@
+<hr>
+<table>
+  <tr>
+    <th>Request Header</th>
+    <th>URL curl</th>
+    <th>URL pattern</th>
+    <th>Repeatence(minutes)</th>
+    <th>Active</th>
+    <th>Action</th>
+    <th>Enable</th>
+  </tr>
+  <tr>
+
+    <td class="requestHeader">
+      <div class="ellipsis" [ngClass]="this.header.enabled == true ? 'green-text' : 'disabled-text'" *ngIf=!isEditable>
+        <span >{{header.requestHeader}}</span>
+      </div>
+      <div *ngIf=isEditable>
+        <input type="text" class="form-control" name="requestHeader" [(ngModel)]="header.requestHeader"
+               #requestHeader="ngModel">
+      </div>
+    </td>
+    <td class="urlValueProducer">
+      <div [ngbTooltip]="header.urlValueProducer" placement="bottom" class="ellipsis" [ngClass]="this.header.enabled == true ? 'green-text' : 'disabled-text'" *ngIf=!isEditable>
+        <span >{{header.urlValueProducer}}</span>
+      </div>
+      <div *ngIf=isEditable>
+        <input type="text" class="form-control" name="urlValueProducer" [(ngModel)]="header.urlValueProducer"
+               #urlValueProducer="ngModel">
+      </div>
+    </td>
+    <td class="urlPattern">
+      <div class="ellipsis" [ngClass]="this.header.enabled == true ? 'green-text' : 'disabled-text'" *ngIf=!isEditable>
+        {{header.urlPattern}}
+      </div>
+      <div *ngIf=isEditable>
+        <input type="text" class="form-control" name="urlPattern" [(ngModel)]="header.urlPattern"
+               #urlPattern="ngModel" readonly="true">
+      </div>
+    </td>
+    <td class="repentance">
+      <div class="ellipsis" [ngClass]="this.header.enabled == true ? 'green-text' : 'disabled-text'" *ngIf=!isEditable>
+        {{header.repentance}}
+      </div>
+      <div *ngIf=isEditable>
+        <input type="text" class="form-control" name="repentance" [(ngModel)]="header.repentance"
+               #repentance="ngModel">
+      </div>
+    </td>
+    <td>{{header.enabled}}</td>
+    <td>
+      <div>
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+          <button class="btn-info" *ngIf=!isEditable (click)="changeEditStatus()">Edit</button>
+          <button class="btn-info" *ngIf=isEditable type="submit">Save</button>
+        </form>
+      </div>
+    </td>
+    <td>
+      <button [ngClass]="this.header.enabled == true ? 'btn-danger' : 'btn-success'" (click)="switchAddingHeader()">
+        {{this.header.enabled == true ? "Disable": "Enable"}}
+      </button>
+    </td>
+
+  </tr>
+</table>
