@@ -14,6 +14,7 @@ import { ReindexAllModalComponent } from './components/reindex-all-modal/reindex
 import { HealthCheckComponent } from './components/health-check/health-check.component';
 import { HealthAllComponent } from './components/health-all/health-all.component';
 import { CheckVersionComponent } from './components/check-version/check-version.component';
+import {StorageManagerService} from "./service/storage-manager.service";
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { CheckVersionComponent } from './components/check-version/check-version.
     NgbModule.forRoot(),
     SpinnerModule
   ],
-  providers: [AuthServiceService, EnvironmentDataService],
+  providers: [AuthServiceService, EnvironmentDataService, StorageManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

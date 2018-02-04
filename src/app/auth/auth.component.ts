@@ -4,16 +4,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthServiceService} from "../service/auth-service.service";
 import {AuthToken} from "../entity/AuthToken";
 import {Header} from "../entity/header";
-import {
-  FormsModule,
-  FormGroup,
-  FormControl
-} from '@angular/forms';
 import {Observable, Subject} from 'rxjs/Rx';
-import {IntervalObservable} from "rxjs/src/observable/IntervalObservable";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 import {Filter} from "../entity/filter";
 import {HttpErrorResponse} from "@angular/common/http";
+import {StorageManagerService} from "../service/storage-manager.service";
 
 @Component({
   selector: 'app-auth',
@@ -29,21 +23,24 @@ export class AuthComponent implements OnInit {
   filter: Filter = new Filter([]);
   interval = null;
 
-  constructor(private authService: AuthServiceService) {
-    this.header = new Header("Authorization",
-      "curl https://sts-test.adidas-group.com/adfs/oauth2/token" +
-      " -d grant_type=password -d client_id=3140e43b-ed0e-42c6-909c-9e64cce48834" +
-      " -d client_secret=Ftwsktm-j3PEK5Mhy5lFqJtZbdBWD16-PhwMEUs5" +
-      " -d resource=https://atp-dev.adidas.com" +
-      " -d username=emea\\\\TST_ACEROROB1 -d password=Test.8888", 29, "<all_urls>",
-      true);
+  constructor(private authService: AuthServiceService, private headerStorageService: StorageManagerService) {
+    this.header = headerStorageService.getHeader();
+
+    if (this.header == null) {
+      this.header = new Header("Authorization",
+        "curl https://sts-test.adidas-group.com/adfs/oauth2/token" +
+        " -d grant_type=password -d client_id=3140e43b-ed0e-42c6-909c-9e64cce48834" +
+        " -d client_secret=Ftwsktm-j3PEK5Mhy5lFqJtZbdBWD16-PhwMEUs5" +
+        " -d resource=https://atp-dev.adidas.com" +
+        " -d username=emea\\\\TST_ACEROROB1 -d password=Test.8888", 29, "<all_urls>",
+        true);
+    }
     this.authToken = new AuthToken();
     this.filter.urls.push(this.allHost[0]);
     this.updateHeader();
     if (typeof chrome.browserAction !== 'undefined') {
       let authToken = this.authToken;
       let header = this.header;
-// ssdgf(this.fn.bind(this, details))
       chrome.webRequest.onBeforeSendHeaders.addListener( (details) => {
           let targetHeaders = [];
           var headers = details.requestHeaders;
@@ -70,8 +67,6 @@ export class AuthComponent implements OnInit {
       console.log('EventPage initialized');
     }
   }
-
-  //javascript bind for
 
   isEmptyUrlPattern() {
     return this.header.urlPattern == null || this.header.urlPattern == undefined || this.header.urlPattern == '';
@@ -121,12 +116,15 @@ export class AuthComponent implements OnInit {
       this.updateHeader();
       this.updateFilter(this.header.urlPattern);
       this.changeEditStatus();
-      console.log(this.filter)
+      console.log(this.filter);
+      this.headerStorageService.saveHeader(this.header);
     }
   }
 
   switchAddingHeader() {
     this.header.enabled = !this.header.enabled;
+    this.headerStorageService.saveHeader(this.header);
+
   }
 
   ngOnInit() {
