@@ -11,7 +11,7 @@ export class DowloadComponentComponent implements OnInit {
 
   @Input() name: string;
   @Input() url: string;
-
+  @Input() buttonName: string;
   @Output() success:  EventEmitter<boolean> = new EventEmitter();
   statusSuccess: boolean = null;
   code;
@@ -26,7 +26,7 @@ export class DowloadComponentComponent implements OnInit {
 
   callUrl() {
     this.progress = true;
-    this.http.get<Response>(this.url).subscribe(value => {
+    this.http.get(this.url,{ responseType: 'text', observe: 'response' }).subscribe(value => {
         this.progress = false;
         this.statusSuccess = true;
         this.code = value.status;

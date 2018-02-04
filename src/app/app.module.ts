@@ -10,6 +10,10 @@ import { EnvironmentDataComponent } from './components/environment-data/environm
 import {EnvironmentDataService} from "./service/environment-data.service";
 import { DowloadComponentComponent } from './dowload-component/dowload-component.component';
 import { SpinnerModule } from 'angular2-spinner';
+import { ReindexAllModalComponent } from './components/reindex-all-modal/reindex-all-modal.component';
+import { HealthCheckComponent } from './components/health-check/health-check.component';
+import { HealthAllComponent } from './components/health-all/health-all.component';
+import { CheckVersionComponent } from './components/check-version/check-version.component';
 
 
 @NgModule({
@@ -18,6 +22,10 @@ import { SpinnerModule } from 'angular2-spinner';
     AuthComponent,
     EnvironmentDataComponent,
     DowloadComponentComponent,
+    ReindexAllModalComponent,
+    HealthCheckComponent,
+    HealthAllComponent,
+    CheckVersionComponent,
   ],
   imports: [
     BrowserModule,

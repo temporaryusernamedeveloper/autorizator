@@ -1,3 +1,17 @@
 .underline-link {
   text-decoration: underline;
 }
+
+.health-check {
+  float: right;
+}
+
+/*:host /deep/ .card-header {*/
+  /*padding: 0;*/
+/*}*/
+
+/*.accordion-header {*/
+  /*padding-left: 25px;*/
+  /*padding-top: 30px;*/
+  /*display: inline-block;*/
+/*}*/

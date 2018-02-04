@@ -1,4 +1,4 @@
-<span> {{name}} </span> <button type="button" class="btn btn-sm" (click)="callUrl()">Go</button>
+<span> {{name}} </span> <button type="button" class="btn btn-sm" (click)="callUrl()">{{buttonName}}</button>
 <spinner *ngIf="progress" [size]="20" [tickness]="1" color="#ff66ff"></spinner>
 <span *ngIf=statusSuccess>Success</span>
 <span *ngIf="isFailedStatus()">Failed</span>

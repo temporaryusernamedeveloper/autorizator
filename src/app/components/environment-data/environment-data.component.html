@@ -1,14 +1,28 @@
 <ngb-tabset>
   <ngb-tab title="Develop environment">
     <ng-template ngbTabContent>
+      <app-reindex-all-modal *ngIf="environmentsArray?.length"
+                             [serviceList]="getDevelopReindexServices()"></app-reindex-all-modal>
+      <app-health-all *ngIf="environmentsArray?.length" [serviceList]="getDevelopHealthServices()"></app-health-all>
+      <app-check-version *ngIf="environmentsArray?.length" [serviceList]="environmentsArray"></app-check-version>
+
       <ngb-accordion *ngIf="environmentsArray?.length > 0" #acc="ngbAccordion">
         <ngb-panel *ngFor="let service_data of environmentsArray; let i = index" [attr.data-index]="i" id={{i}}>
           <ng-template ngbPanelTitle>
-            {{service_data.name}}
+            <span class="accordion-header">{{service_data.name}}</span>
+            <!--<span class="health-check">-->
+              <!--<app-health-check pingUrl="http://google.com" pingIntervalMilli="10000" title="Google"></app-health-check>-->
+            <!--</span>-->
           </ng-template>
           <ng-template ngbPanelContent>
-            <div>Swagger url: {{service_data.develop}}</div>
-           <span>Reindex </span><app-dowload-component name="test-reindex" url="google.com"></app-dowload-component>
+            <div><b>Swagger url:</b> <a href="http://{{service_data.develop}}" target="_blank">{{service_data.develop}}</a></div>
+            <span><b>Reindex:</b> </span>
+            <ul>
+              <li *ngFor="let item of service_data.reindex">
+                <app-dowload-component name="{{item}}" url="http://{{service_data.develop}}/{{item}}"
+                                       buttonName="Reindex"></app-dowload-component>
+              </li>
+            </ul>
           </ng-template>
         </ngb-panel>
       </ngb-accordion>
@@ -16,13 +30,51 @@
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Sit environment">
-    <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-        craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-        cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-        yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-        shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-        sint qui sapiente accusamus tattooed echo park.</p>
+    <ng-template ngbTabContent>
+      <app-reindex-all-modal *ngIf="environmentsArray?.length"
+                             [serviceList]="getSitReindexServices()"></app-reindex-all-modal>
+      <app-health-all *ngIf="environmentsArray?.length" [serviceList]="getSitHealthServices()"></app-health-all>
+
+      <ngb-accordion *ngIf="environmentsArray?.length > 0" #acc="ngbAccordion">
+        <ngb-panel *ngFor="let service_data of environmentsArray; let j = index" [attr.data-index]="j" id={{j}}>
+          <ng-template ngbPanelTitle>
+            <span class="accordion-header">{{service_data.name}}</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div><b>Swagger url:</b> <a href="http://{{service_data.sit}}" target="_blank">{{service_data.sit}}</a></div>
+            <span><b>Reindex:</b> </span>
+            <ul>
+              <li *ngFor="let item of service_data.reindex">
+                <app-dowload-component name="{{item}}" url="http://{{service_data.sit}}/{{item}}"
+                                       buttonName="Reindex"></app-dowload-component>
+              </li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Local environment">
+    <ng-template ngbTabContent>
+      <app-reindex-all-modal *ngIf="environmentsArray?.length"
+                             [serviceList]="getLocalReindexServices()"></app-reindex-all-modal>
+      <ngb-accordion *ngIf="environmentsArray?.length > 0" #acc="ngbAccordion">
+        <ngb-panel *ngFor="let service_data of environmentsArray; let k = index" [attr.data-index]="k" id={{k}}>
+          <ng-template ngbPanelTitle>
+            <span class="accordion-header">{{service_data.name}}</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div><b>Swagger url:</b> <a href="http://{{service_data.local}}" target="_blank">{{service_data.local}}</a></div>
+            <span><b>Reindex:</b> </span>
+            <ul>
+              <li *ngFor="let item of service_data.reindex">
+                <app-dowload-component name="{{item}}" url="http://{{service_data.local}}/{{item}}"
+                                       buttonName="Reindex"></app-dowload-component>
+              </li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>

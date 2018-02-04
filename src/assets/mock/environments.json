@@ -3,18 +3,93 @@
     "name": "governance-service",
     "develop": "develop.atp-governance-service.dev.he.k8s.emea.adsint.biz",
     "sit": "sit.atp-governance-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8083",
     "reindex": [
       "governance/sport-category/reindex",
-      "governance/sport-activity/reindex"
+      "governance/sport-activity/reindex",
+      "governance/sport-attribute-option/reindex",
+      "governance/laboratories/reindex",
+      "governance/milestones/reindex",
+      "governance/sample-matrix/reindex",
+      "governance/sources/reindex",
+      "governance/sport-accessory/reindex",
+      "governance/sport-attribute/reindex",
+      "governance/test-matrix/reindex",
+      "governance/test-methods/reindex"
     ]
   },
   {
     "name": "tester-service",
     "develop": "develop.atp-tester-service.dev.he.k8s.emea.adsint.biz",
     "sit": "sit.atp-tester-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8085",
     "reindex": [
-      "governance/sport-category/reindex",
-      "governance/sport-activity/reindex"
+      "testers/reindex",
+      "testers/documents/reindex"
     ]
+  },
+  {
+    "name": "orchestration-service",
+    "develop": "develop.atp-orchestration-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-orchestration-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8080",
+    "reindex": [
+    ]
+  },
+  {
+    "name": "execution-service",
+    "develop": "develop.atp-execution-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-execution-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8082",
+    "reindex": [
+      "execution/testprojects/reindex"
+    ]
+  },
+  {
+    "name": "referencedata-service",
+    "develop": "develop.atp-referencedata-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-referencedata-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8084",
+    "reindex": []
+  },
+  {
+    "name": "document-service",
+    "develop": "develop.atp-document-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-document-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8087",
+    "reindex": []
+  },
+  {
+    "name": "user-service",
+    "develop": "develop.atp-user-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-user-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8086",
+    "reindex": [
+      "users/reindex",
+      "users/profile/preferences/reindex"
+    ]
+  },
+  {
+    "name": "product-service",
+    "develop": "develop.atp-product-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-product-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8089",
+    "reindex": [
+      "products/reindex"
+    ]
+  },
+  {
+    "name": "configuration-service",
+    "develop": "develop.atp-configuration-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-configuration-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8888",
+    "reindex": []
+  },
+  {
+    "name": "search-service",
+    "develop": "develop.atp-search-service.dev.he.k8s.emea.adsint.biz",
+    "sit": "sit.atp-search-service.staging.he.k8s.emea.adsint.biz",
+    "local": "localhost:8081",
+    "reindex": []
   }
 ]

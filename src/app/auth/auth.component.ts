@@ -31,7 +31,11 @@ export class AuthComponent implements OnInit {
 
   constructor(private authService: AuthServiceService) {
     this.header = new Header("Authorization",
-      "", 29, "<all_urls>",
+      "curl https://sts-test.adidas-group.com/adfs/oauth2/token" +
+      " -d grant_type=password -d client_id=3140e43b-ed0e-42c6-909c-9e64cce48834" +
+      " -d client_secret=Ftwsktm-j3PEK5Mhy5lFqJtZbdBWD16-PhwMEUs5" +
+      " -d resource=https://atp-dev.adidas.com" +
+      " -d username=emea\\\\TST_ACEROROB1 -d password=Test.8888", 29, "<all_urls>",
       true);
     this.authToken = new AuthToken();
     this.filter.urls.push(this.allHost[0]);

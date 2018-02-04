@@ -1,0 +1,40 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Health check</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="!isFinished">
+      <p>Processing&hellip;</p>
+      <p>
+        <ngb-progressbar [animated]="true" [striped]="true" type="info" [value]="processedPercentage" height="30px">
+          Checking services: <b> {{processed}} of
+          {{serviceList?.length}}</b>...
+        </ngb-progressbar>
+      </p>
+    </div>
+    <div *ngIf="isFinished">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Service</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of successProcessedList"
+            [ngClass]="{'alert-success': item.success, 'alert-danger': !item.success}">
+          <td>{{item.name}}</td>
+          <td>{{item.status}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+<button class="btn btn-sm btn-info" (click)="open(content)">Health check</button>

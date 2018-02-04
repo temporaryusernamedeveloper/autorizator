@@ -8,6 +8,7 @@ import {ServiceDescription} from "../entity/service-description";
 export class EnvironmentDataService {
 
   url: string = "assets/mock/environments.json";
+  urlInfo: string = "assets/mock/info.json";
 
   constructor(private http: HttpClient) {
   }
@@ -17,4 +18,10 @@ export class EnvironmentDataService {
     return this.http.get<ServiceDescription[]>(this.url);
   }
 
+  getServiceInfo(url:string): Observable<string> {
+    return this.http.get(url).map((res: any) => {
+      console.log(res);
+      return res.git.commit.time;
+    });
+  }
 }

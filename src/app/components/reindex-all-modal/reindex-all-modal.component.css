@@ -1,0 +1,14 @@
+li {
+  white-space: nowrap;
+  overflow: hidden;
+  /* "overflow" value must be different from "visible" */
+  text-overflow: ellipsis;
+  width: 450px;
+  border: 1px solid #999;
+  direction: rtl;
+  text-align: left;
+}
+
+button {
+  margin: 10px;
+}

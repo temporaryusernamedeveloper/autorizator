@@ -1,0 +1,40 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Reindex all services</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="!isFinished">
+      <p>Processing&hellip;</p>
+      <p>
+        <ngb-progressbar [animated]="true" [striped]="true" type="info" [value]="processedPercentage" height="30px">
+          Reindex services: <b> {{processed}} of
+          {{serviceList?.length}}</b>...
+        </ngb-progressbar>
+      </p>
+    </div>
+    <div *ngIf="isFinished">
+      <h5>Done</h5>
+      <p class="alert-success">Succeed: {{successProcessedList?.length}}</p>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-success" *ngFor="let item of successProcessedList">
+          {{item}}
+        </li>
+      </ul>
+      <p class="alert-danger">Failed: {{failedProcessedList?.length}}</p>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-danger" *ngFor="let item of failedProcessedList">
+          {{item}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-sm btn-info" (click)="open(content)">Reindex all</button>
+
